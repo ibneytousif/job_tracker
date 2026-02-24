@@ -8,6 +8,7 @@ const rejectedTotal = document.getElementById("rejected-total");
 
 let interviewList = [];
 let rejectedList = [];
+let currentStat = "all";
 
 /* Buttons */
 const allBtn = document.getElementById("all-btn");
@@ -26,6 +27,7 @@ function calculateCards() {
 calculateCards();
 
 function toggleStyle(id) {
+  currentStat = id;
   console.log("CLICKED", id);
   allBtn.classList.add("bg-[#ffffff]", "text-[#64748b]");
   interviewBtn.classList.add("bg-[#ffffff]", "text-[#64748b]");
@@ -41,12 +43,15 @@ function toggleStyle(id) {
 
   if (id == "interview-btn") {
     totalCards.classList.add("hidden");
+    render();
     fiteredSection.classList.remove("hidden");
   } else if (id == "all-btn") {
     totalCards.classList.remove("hidden");
+
     fiteredSection.classList.add("hidden");
   } else if (id == "rejected-btn") {
     totalCards.classList.add("hidden");
+    rejectRender();
     fiteredSection.classList.remove("hidden");
   }
 }
@@ -79,7 +84,9 @@ mainContainer.addEventListener("click", function (e) {
       (items) => items.jobName != information.jobName,
     );
     calculateCards();
-    render();
+    if (currentStat == "rejected-btn") {
+      rejectRender();
+    }
   } else if (e.target.classList.contains("rejected-button")) {
     console.log("Entered Rejected LIST");
     const card = e.target.parentNode.parentNode;
@@ -102,11 +109,13 @@ mainContainer.addEventListener("click", function (e) {
     if (!infoExist) {
       rejectedList.push(information);
     }
-    interviewList = interviewBtn.filter(
+    interviewList = interviewList.filter(
       (items) => items.jobName != information.jobName,
     );
     calculateCards();
-    rejectRender();
+    if (currentStat == "interview-btn") {
+      render();
+    }
   }
 });
 console.log(rejectedList);
