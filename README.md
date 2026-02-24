@@ -1,86 +1,13 @@
-## Welcome To ( সহজ সরল সিম্পল ) Assignment - 4
+Understanding DOM Selection and Events in JavaScript
 
----
+When working with JavaScript in the browser, selecting elements from the DOM is one of the most common tasks. Methods like getElementById, getElementsByClassName, and querySelector all help you find elements, but they work a bit differently. getElementById is the most direct and specific — it returns a single element that matches the given ID. Since IDs are meant to be unique, this method is straightforward and efficient. getElementsByClassName, on the other hand, returns multiple elements that share the same class. It gives you a live collection, meaning if the DOM changes, the collection updates automatically. Then there’s querySelector and querySelectorAll, which are more flexible because they accept full CSS selectors. querySelector returns only the first match, while querySelectorAll returns all matches as a static list that does not automatically update. If you need flexibility and complex selection, querySelector methods are usually the better choice.
 
-# 📅 Deadline For 60 marks: 23th February, 2026 (11:59 pm ⏱️)
+Creating and inserting new elements into the DOM follows a simple logical process. First, you create the element using document.createElement(). At this point, it only exists in memory — it is not visible on the page. Next, you customize it by adding text, attributes, or classes. Finally, you insert it into the DOM using methods like append, appendChild, or prepend. Until you insert it into an existing element in the document, the browser will not render it. That separation between creation and insertion is important to understand.
 
-# 📅 Deadline For 50 marks: 24th February, 2026 (11:59 pm ⏱️)
+Event handling is another key concept in JavaScript. One important behavior is event bubbling. When an event happens on an element — like clicking a button — the event doesn’t stop there. It first triggers on the target element, then “bubbles up” to its parent, then its parent’s parent, and so on, all the way up to the document. This means multiple event listeners can react to a single action if they are attached to parent elements. Understanding bubbling helps explain why sometimes multiple handlers run when you only clicked one element.
 
-# 📅 Deadline For 30 marks: Any time after 24th February.
+Event delegation takes advantage of bubbling. Instead of attaching event listeners to many child elements individually, you attach a single listener to their parent. Because events bubble upward, the parent can detect which child triggered the event. This approach improves performance, reduces repetitive code, and works even for elements added dynamically later. In large or dynamic applications, event delegation is often the smarter design choice.
 
-# Main Requirements
+Finally, preventDefault() and stopPropagation() control different aspects of event behavior. preventDefault() stops the browser’s built-in behavior, such as preventing a form from submitting or a link from navigating. However, it does not stop the event from bubbling. stopPropagation(), in contrast, stops the event from moving up the DOM tree, preventing parent handlers from running — but it does not affect the browser’s default behavior. They solve different problems, and confusing them often leads to bugs.
 
-## Design Part
-
-## Dashboard
-
-- Website name and Create a dashboard like figma
-- The section should be responsive for mobile devices. It is totally up to you.
-
-## Available Jobs Section
-
-- A title on the left side, jobs count on the right side
-- 3 different tab below the section title
-- Minimum 8 cards with:
-  - companyName
-  - position
-  - location
-  - type
-  - salary
-  - description
-  - 2 buttons: Interview, Rejected
-- By default all the jobs data will show on All tab, and the Interview, Rejected tab will show “No jobs Available” message with a subtitle below and an icon/image on the above
-
-- The section should be responsive for mobile devices. It is totally up to you.
-
----
-
-## Functionalities Part
-
-- Clicking on Interview button on the card
-  - will add the data on Interview tab
-  - add the status as Interview.
-  - Will increase the the count of interview in Dashboard
-
-- Clicking on Rejected button on the card
-  - will add the data on Rejected tab
-  - add the status as Rejected.
-  - Will increase the the count of Rejected in Dashboard
-
-- Enable toggle between Interview and rejected button(you can select Rejected button after clicking on Interview, and Interview button after clicking on Rejected button). It will change the tab and dashboard count also. It will show tab wise jobs count on the right.
-
----
-
-# Challenges Requirements
-
-- Clicking on the delete button will remove that card from the UI, and the count will be deducted from the dashboard card and the main section.
-- No lorem ipsum text on your website. At least 8 meaningful commits in your project.
-
-- Create a readme file and answer this question on your own. Don’t copy-paste from Google or any AI chatbot.
-
-## Answers to Questions
-
-### 1. What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
-
-### 2. How do you create and insert a new element into the DOM?
-
-### 3. What is Event Bubbling? And how does it work?
-
-### 4. What is Event Delegation in JavaScript? Why is it useful?
-
-### 5. What is the difference between preventDefault() and stopPropagation() methods?
-
----
-
-**Technology Stack:**
-
-- HTML
-- CSS (Vanilla/Tailwind/DaisyUI)
-- JavaScript (Vanilla)
-
----
-
-## What to submit:
-
-1. GitHub Repository Link:
-2. Live Site Link:
+Altogether, mastering these concepts gives you strong control over how your web applications interact with users and respond to actions.
