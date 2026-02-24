@@ -4,6 +4,7 @@ const mainContainer = document.querySelector("main");
 const rejectedSection = document.querySelector("#rejected-section");
 const interviewTotal = document.getElementById("interview-total");
 const rejectedTotal = document.getElementById("rejected-total");
+const fiteredSection = document.getElementById("filtered-section");
 /* list Information */
 
 let interviewList = [];
@@ -78,7 +79,7 @@ mainContainer.addEventListener("click", function (e) {
       jobStatus: "interview",
     };
 
-    let infoExist = interviewList.find(
+    const infoExist = interviewList.find(
       (items) => items.jobname === information.jobName,
     );
 
@@ -127,8 +128,8 @@ mainContainer.addEventListener("click", function (e) {
 console.log(rejectedList);
 
 function render() {
-  const fiteredSection = document.getElementById("filtered-section");
-  fiteredSection.innerHTML = " ";
+  const filteredSection = document.getElementById("filtered-section");
+  filteredSection.innerHTML = " ";
 
   for (let each of interviewList) {
     console.log("inside_loop", each);
@@ -144,21 +145,21 @@ function render() {
         <button id="job-status" class=" bg-[#eef4ff] text-[#002c5c] btn ">${each.jobStatus}</button>
         <p id="job-info" class="mt-1.5 mb-4"> ${each.jobInfo} </p>
         <div>
-            <button class="btn btn-soft btn-success">Interview</button>
-            <button class="btn btn-soft btn-error">Rejected</button>
+            <button class="btn btn-soft btn-success interview-button">Interview</button>
+            <button class="btn btn-soft btn-error rejected-button">Rejected</button>
         </div>
     </div>
     <button class="w-10 h-10 border-[#eef4ff] border   rounded-full"><i
             class="fa-regular fa-trash-can "></i></button>
 
     `;
-    fiteredSection.appendChild(div);
+    filteredSection.appendChild(div);
   }
 }
 
 function rejectRender() {
-  const fiteredSection = document.getElementById("filtered-section");
-  fiteredSection.innerHTML = " ";
+  const filteredSection = document.getElementById("filtered-section");
+  filteredSection.innerHTML = " ";
 
   for (let each of rejectedList) {
     console.log("inside_loop", each);
@@ -183,6 +184,6 @@ function rejectRender() {
 
 
     `;
-    fiteredSection.appendChild(div);
+    filteredSection.appendChild(div);
   }
 }
