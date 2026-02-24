@@ -44,6 +44,7 @@ function toggleStyle(id) {
   if (id == "interview-btn") {
     totalCards.classList.add("hidden");
     render();
+
     fiteredSection.classList.remove("hidden");
   } else if (id == "all-btn") {
     totalCards.classList.remove("hidden");
@@ -52,6 +53,7 @@ function toggleStyle(id) {
   } else if (id == "rejected-btn") {
     totalCards.classList.add("hidden");
     rejectRender();
+
     fiteredSection.classList.remove("hidden");
   }
 }
@@ -66,6 +68,7 @@ mainContainer.addEventListener("click", function (e) {
     const jobPrice = card.querySelector("#job-price").innerText;
     const jobInfo = card.querySelector("#job-info").innerText;
     const jobStatus = card.querySelector("#job-status").innerText;
+    card.querySelector("#job-status").innerText = "interview";
 
     const information = {
       jobName,
@@ -74,9 +77,11 @@ mainContainer.addEventListener("click", function (e) {
       jobInfo,
       jobStatus: "interview",
     };
+
     let infoExist = interviewList.find(
       (items) => items.jobname === information.jobName,
     );
+
     if (!infoExist) {
       interviewList.push(information);
     }
@@ -96,6 +101,7 @@ mainContainer.addEventListener("click", function (e) {
     const jobPrice = card.querySelector("#job-price").innerText;
     const jobInfo = card.querySelector("#job-info").innerText;
     const jobStatus = card.querySelector("#job-status").innerText;
+    card.querySelector("#job-status").innerText = "rejected";
     const information = {
       jobName,
       jobTag,
