@@ -80,7 +80,7 @@ mainContainer.addEventListener("click", function (e) {
     };
 
     const infoExist = interviewList.find(
-      (items) => items.jobname === information.jobName,
+      (items) => items.jobName === information.jobName,
     );
 
     if (!infoExist) {
@@ -111,7 +111,7 @@ mainContainer.addEventListener("click", function (e) {
       jobStatus: "rejected",
     };
     let infoExist = rejectedList.find(
-      (items) => items.jobname === information.jobName,
+      (items) => items.jobName === information.jobName,
     );
     if (!infoExist) {
       rejectedList.push(information);
