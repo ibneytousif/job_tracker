@@ -45,20 +45,23 @@ function toggleStyle(id) {
 
   if (id == "interview-btn") {
     totalCards.classList.add("hidden");
-    if (interviewList.length == 0) {
-      renderNojob();
-      noJob.classList.remove("hidden");
-    } else {
-      render();
-      noJob.classList.add("hidden");
-    }
 
-    fiteredSection.classList.remove("hidden");
+    if (interviewList.length == 0) {
+      noJob.classList.remove("hidden");
+
+      renderNojob();
+    } else {
+      noJob.classList.add("hidden");
+
+      fiteredSection.classList.remove("hidden");
+
+      render();
+    }
   } else if (id == "all-btn") {
     if (totalCards.children.length == 0) {
-      renderNojob();
       noJob.classList.remove("hidden");
       totalCards.classList.add("hidden");
+      renderNojob();
     } else {
       noJob.classList.add("hidden");
       totalCards.classList.remove("hidden");
@@ -66,9 +69,9 @@ function toggleStyle(id) {
     }
   } else if (id == "rejected-btn") {
     if (rejectedList.length == 0) {
-      renderNojob();
       noJob.classList.remove("hidden");
       totalCards.classList.add("hidden");
+      renderNojob();
     } else {
       noJob.classList.add("hidden");
       totalCards.classList.add("hidden");
@@ -109,10 +112,12 @@ mainContainer.addEventListener("click", function (e) {
       (items) => items.jobName != information.jobName,
     );
     calculateCards();
+
     if (currentStat == "rejected-btn") {
       rejectRender();
     }
   } else if (e.target.classList.contains("rejected-button")) {
+    renderNojob();
     console.log("Entered Rejected LIST");
     const card = e.target.parentNode.parentNode;
     const jobName = card.querySelector("#job-name").innerText;
@@ -139,6 +144,7 @@ mainContainer.addEventListener("click", function (e) {
       (items) => items.jobName != information.jobName,
     );
     calculateCards();
+
     if (currentStat == "interview-btn") {
       render();
     }
