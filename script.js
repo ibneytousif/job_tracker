@@ -5,6 +5,7 @@ const rejectedSection = document.querySelector("#rejected-section");
 const interviewTotal = document.getElementById("interview-total");
 const rejectedTotal = document.getElementById("rejected-total");
 const fiteredSection = document.getElementById("filtered-section");
+const noJob = document.getElementById("no-job");
 /* list Information */
 
 let interviewList = [];
@@ -44,18 +45,36 @@ function toggleStyle(id) {
 
   if (id == "interview-btn") {
     totalCards.classList.add("hidden");
-    render();
+    if (interviewList.length == 0) {
+      renderNojob();
+      noJob.classList.remove("hidden");
+    } else {
+      render();
+      noJob.classList.add("hidden");
+    }
 
     fiteredSection.classList.remove("hidden");
   } else if (id == "all-btn") {
-    totalCards.classList.remove("hidden");
-
-    fiteredSection.classList.add("hidden");
+    if (totalCards.children.length == 0) {
+      renderNojob();
+      noJob.classList.remove("hidden");
+      totalCards.classList.add("hidden");
+    } else {
+      noJob.classList.add("hidden");
+      totalCards.classList.remove("hidden");
+      fiteredSection.classList.add("hidden");
+    }
   } else if (id == "rejected-btn") {
-    totalCards.classList.add("hidden");
-    rejectRender();
-
-    fiteredSection.classList.remove("hidden");
+    if (rejectedList.length == 0) {
+      renderNojob();
+      noJob.classList.remove("hidden");
+      totalCards.classList.add("hidden");
+    } else {
+      noJob.classList.add("hidden");
+      totalCards.classList.add("hidden");
+      fiteredSection.classList.remove("hidden");
+      rejectRender();
+    }
   }
 }
 
@@ -186,4 +205,18 @@ function rejectRender() {
     `;
     filteredSection.appendChild(div);
   }
+}
+
+function renderNojob() {
+  const noJob = document.getElementById("no-job");
+  noJob.innerHTML = " ";
+
+  const div = document.createElement("div");
+  div.className = "mt-5 bg-[#ffffff] flex flex-col items-center py-30";
+  div.innerHTML = `<img src="./jobs.png" alt="">
+  <div class="">
+      <p class="font-semibold text-[25px] text-[#002c5c] text-center">No jobs available</p>
+      <p class="text-[#64748b] text-[18px]">Check back soon for new job opportunities</p>
+  </div>`;
+  noJob.appendChild(div);
 }
