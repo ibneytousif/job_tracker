@@ -48,6 +48,7 @@ function toggleStyle(id) {
 
     if (interviewList.length == 0) {
       noJob.classList.remove("hidden");
+      fiteredSection.classList.add("hidden");
 
       renderNojob();
     } else {
@@ -63,14 +64,15 @@ function toggleStyle(id) {
       totalCards.classList.add("hidden");
       renderNojob();
     } else {
+      fiteredSection.classList.add("hidden");
       noJob.classList.add("hidden");
       totalCards.classList.remove("hidden");
-      fiteredSection.classList.add("hidden");
     }
   } else if (id == "rejected-btn") {
     if (rejectedList.length == 0) {
       noJob.classList.remove("hidden");
       totalCards.classList.add("hidden");
+      fiteredSection.classList.add("hidden");
       renderNojob();
     } else {
       noJob.classList.add("hidden");
@@ -83,6 +85,15 @@ function toggleStyle(id) {
 
 mainContainer.addEventListener("click", function (e) {
   if (e.target.classList.contains("interview-button")) {
+    if (currentStat === "rejected-btn") {
+      console.log("INSIDE REJECTED CURSTATE");
+      console.log("REJECTED_LIST IS 0", rejectedList.length);
+      if (rejectedList.length == 1) {
+        console.log("REJECTED_LIST IS 0");
+        renderNojob();
+        noJob.classList.remove("hidden");
+      }
+    }
     console.log("Entered INTERVIEW LIST");
     const card = e.target.parentNode.parentNode;
     const jobName = card.querySelector("#job-name").innerText;
@@ -117,7 +128,15 @@ mainContainer.addEventListener("click", function (e) {
       rejectRender();
     }
   } else if (e.target.classList.contains("rejected-button")) {
-    renderNojob();
+    if (currentStat === "interview-btn") {
+      console.log("INSIDE REJECTED CURSTATE");
+      console.log("REJECTED_LIST IS 0", rejectedList.length);
+      if (interviewList.length == 1) {
+        console.log("REJECTED_LIST IS 0");
+        renderNojob();
+        noJob.classList.remove("hidden");
+      }
+    }
     console.log("Entered Rejected LIST");
     const card = e.target.parentNode.parentNode;
     const jobName = card.querySelector("#job-name").innerText;
