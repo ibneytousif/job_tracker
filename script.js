@@ -6,6 +6,7 @@ const interviewTotal = document.getElementById("interview-total");
 const rejectedTotal = document.getElementById("rejected-total");
 const fiteredSection = document.getElementById("filtered-section");
 const noJob = document.getElementById("no-job");
+const jobCount = document.getElementById("job-count");
 /* list Information */
 
 let interviewList = [];
@@ -25,6 +26,7 @@ function calculateCards() {
   total.innerText = totalCards.children.length;
   interviewTotal.innerText = interviewList.length;
   rejectedTotal.innerText = rejectedList.length;
+  jobCount.innerText = `${totalCards.children.length} jobs`;
 }
 calculateCards();
 
@@ -42,8 +44,8 @@ function toggleStyle(id) {
   const selected = document.getElementById(id);
   selected.classList.remove("bg-[#ffffff]", "text-[#64748b]");
   selected.classList.add("bg-blue-500", "text-white");
-
   if (id == "interview-btn") {
+    jobCount.innerText = `${interviewList.length} jobs`;
     totalCards.classList.add("hidden");
 
     if (interviewList.length == 0) {
@@ -59,6 +61,7 @@ function toggleStyle(id) {
       render();
     }
   } else if (id == "all-btn") {
+    jobCount.innerText = `${totalCards.children.length} jobs`;
     if (totalCards.children.length == 0) {
       noJob.classList.remove("hidden");
       totalCards.classList.add("hidden");
@@ -69,6 +72,7 @@ function toggleStyle(id) {
       totalCards.classList.remove("hidden");
     }
   } else if (id == "rejected-btn") {
+    jobCount.innerText = `${rejectedList.length} jobs`;
     if (rejectedList.length == 0) {
       noJob.classList.remove("hidden");
       totalCards.classList.add("hidden");
