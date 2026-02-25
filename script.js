@@ -171,6 +171,19 @@ mainContainer.addEventListener("click", function (e) {
     if (currentStat == "interview-btn") {
       render();
     }
+  } else if (e.target.classList.contains("trash-button")) {
+    const card = e.target.closest(".mt-5");
+
+    const jobName = card.querySelector("#job-name").innerText;
+
+    interviewList = interviewList.filter((items) => items.jobName !== jobName);
+    rejectedList = rejectedList.filter((items) => items.jobName !== jobName);
+
+    card.remove();
+    calculateCards();
+
+    if (currentStat == "interview-btn") render();
+    if (currentStat == "rejected-btn") rejectRender();
   }
 });
 console.log(rejectedList);
@@ -197,8 +210,8 @@ function render() {
             <button class="btn btn-soft btn-error rejected-button">Rejected</button>
         </div>
     </div>
-    <button class="w-10 h-10 border-[#eef4ff] border   rounded-full"><i
-            class="fa-regular fa-trash-can "></i></button>
+    <button class="w-10 h-10 border-[#eef4ff] border   rounded-full trash-button"><i
+            class="fa-regular fa-trash-can trash-button"></i></button>
 
     `;
     filteredSection.appendChild(div);
@@ -227,8 +240,8 @@ function rejectRender() {
             <button class="btn btn-soft btn-error rejected-button">Rejected</button>
         </div>
     </div>
-    <button class="w-10 h-10 border-[#eef4ff] border   rounded-full"><i
-            class="fa-regular fa-trash-can "></i></button>
+    <button class="w-10 h-10 border-[#eef4ff] border   rounded-full trash-button"><i
+            class="fa-regular fa-trash-can trash-button"></i></button>
 
 
     `;
