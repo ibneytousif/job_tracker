@@ -176,14 +176,35 @@ mainContainer.addEventListener("click", function (e) {
 
     const jobName = card.querySelector("#job-name").innerText;
 
+    git;
+
     interviewList = interviewList.filter((items) => items.jobName !== jobName);
     rejectedList = rejectedList.filter((items) => items.jobName !== jobName);
 
     card.remove();
+    if (currentStat === "interview-btn") {
+      console.log("INSIDE REJECTED CURSTATE");
+      console.log("REJECTED_LIST IS 0", rejectedList.length);
+      if (interviewList.length == 0) {
+        console.log("REJECTED_LIST IS 0");
+        renderNojob();
+        noJob.classList.remove("hidden");
+      }
+    }
+    if (currentStat === "rejected-btn") {
+      console.log("INSIDE REJECTED CURSTATE");
+      console.log("REJECTED_LIST IS 0", rejectedList.length);
+      if (rejectedList.length == 0) {
+        console.log("REJECTED_LIST IS 0");
+        renderNojob();
+        noJob.classList.remove("hidden");
+      }
+    }
+
     calculateCards();
 
-    if (currentStat == "interview-btn") render();
-    if (currentStat == "rejected-btn") rejectRender();
+    /* if (currentStat == "interview-btn") render(); */
+    /* if (currentStat == "rejected-btn") rejectRender(); */
   }
 });
 console.log(rejectedList);
