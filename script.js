@@ -175,8 +175,8 @@ function rejectRender() {
         <button id="job-status" class=" bg-[#eef4ff] text-[#002c5c] btn ">${each.jobStatus}</button>
         <p id="job-info" class="mt-1.5 mb-4"> ${each.jobInfo} </p>
         <div>
-            <button class="btn btn-soft btn-success">Interview</button>
-            <button class="btn btn-soft btn-error">Rejected</button>
+            <button class="btn btn-soft btn-success interview-button">Interview</button>
+            <button class="btn btn-soft btn-error rejected-button">Rejected</button>
         </div>
     </div>
     <button class="w-10 h-10 border-[#eef4ff] border   rounded-full"><i
