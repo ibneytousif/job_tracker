@@ -176,8 +176,6 @@ mainContainer.addEventListener("click", function (e) {
 
     const jobName = card.querySelector("#job-name").innerText;
 
-    git;
-
     interviewList = interviewList.filter((items) => items.jobName !== jobName);
     rejectedList = rejectedList.filter((items) => items.jobName !== jobName);
 
