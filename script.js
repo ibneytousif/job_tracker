@@ -107,6 +107,11 @@ mainContainer.addEventListener("click", function (e) {
     const jobInfo = card.querySelector("#job-info").innerText;
     const jobStatus = card.querySelector("#job-status").innerText;
     card.querySelector("#job-status").innerText = "interview";
+    totalCards.querySelectorAll(".mt-5").forEach((staticCard) => {
+      if (staticCard.querySelector("#job-name").innerText === jobName) {
+        staticCard.querySelector("#job-status").innerText = "interview";
+      }
+    });
 
     const information = {
       jobName,
@@ -148,8 +153,13 @@ mainContainer.addEventListener("click", function (e) {
     const jobTag = card.querySelector("#job-tag").innerText;
     const jobPrice = card.querySelector("#job-price").innerText;
     const jobInfo = card.querySelector("#job-info").innerText;
-    const jobStatus = card.querySelector("#job-status").innerText;
+    /* const jobStatus = card.querySelector("#job-status").innerText; */
     card.querySelector("#job-status").innerText = "rejected";
+    totalCards.querySelectorAll(".mt-5").forEach((staticCard) => {
+      if (staticCard.querySelector("#job-name").innerText === jobName) {
+        staticCard.querySelector("#job-status").innerText = "rejected";
+      }
+    });
     const information = {
       jobName,
       jobTag,
@@ -157,6 +167,7 @@ mainContainer.addEventListener("click", function (e) {
       jobInfo,
       jobStatus: "rejected",
     };
+
     let infoExist = rejectedList.find(
       (items) => items.jobName === information.jobName,
     );
@@ -166,6 +177,7 @@ mainContainer.addEventListener("click", function (e) {
     interviewList = interviewList.filter(
       (items) => items.jobName != information.jobName,
     );
+
     calculateCards();
 
     if (currentStat == "interview-btn") {
@@ -178,6 +190,12 @@ mainContainer.addEventListener("click", function (e) {
 
     interviewList = interviewList.filter((items) => items.jobName !== jobName);
     rejectedList = rejectedList.filter((items) => items.jobName !== jobName);
+
+    totalCards.querySelectorAll(".mt-5").forEach((staticCard) => {
+      if (staticCard.querySelector("#job-name").innerText === jobName) {
+        staticCard.querySelector("#job-status").innerText = "NOT APPLIED";
+      }
+    });
 
     card.remove();
     if (currentStat === "interview-btn") {
@@ -199,13 +217,14 @@ mainContainer.addEventListener("click", function (e) {
       }
     }
 
-    calculateCards();
+    if (totalCards.children.length == 0) {
+      renderNojob();
+      noJob.classList.remove("hidden");
+    }
 
-    /* if (currentStat == "interview-btn") render(); */
-    /* if (currentStat == "rejected-btn") rejectRender(); */
+    calculateCards();
   }
 });
-console.log(rejectedList);
 
 function render() {
   const filteredSection = document.getElementById("filtered-section");
